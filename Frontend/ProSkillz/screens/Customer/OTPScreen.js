@@ -1,5 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRoute } from '@react-navigation/native';
+
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import OTPIcon from '../../assets/icons/OTPIcon.svg'
 import { useNavigation } from '@react-navigation/native'
 import ButtonsPS from '../../components/ButtonsPS'
@@ -11,28 +14,44 @@ import {
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
+import loginServices from '../../api/login'
+
+
 const CELL_COUNT = 6;
 
-const OTPScreen = () => {
+const OTPScreen = (props) => {
+
+	const {route} = props 
 
     const navigation = useNavigation()
 
     const [value, setValue] = useState('');
 
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
-    const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    const [propss, getCellOnLayoutHandler] = useClearByFocusCell({
         value,
         setValue,
     });
 
     console.log(value);
 
-    const checkOTP = () => {
+    const checkOTP = async () => {
+		
+		try {
 
-        console.log("Working");
-        if (value.toString() == "721930") {
-            navigation.navigate("Get-Name")
-        }
+			const user = await loginServices.user({phone: route.params.phone, userOtp: value})
+			await AsyncStorage.setItem('loggedUser', JSON.stringify(user))
+			AsyncStorage.getItem('loggedUser')
+						.then(value => {
+							console.log(value)
+						})
+			navigation.navigate("Get-Name")
+
+		}
+		catch (error) {
+			console.log(error)
+		}
+
     }
 
 
@@ -54,7 +73,7 @@ const OTPScreen = () => {
 
                     <CodeField
                         ref={ref}
-                        {...props}
+                        {...propss}
                         // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
                         value={value}
                         onChangeText={setValue}

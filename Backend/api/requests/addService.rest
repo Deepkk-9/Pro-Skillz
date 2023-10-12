@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/service
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5MTk2NTMzMTMwODIiLCJpZCI6IjY1MjU2ZDNkZTZiOWM3MDM5YjU0MjBmNiIsImlhdCI6MTY5Njk1Mjg2NSwiZXhwIjoxNzI4NDg4ODY1fQ._tdQ-8zXuBjcVREcYMTDRRaSQC4vmzrFmT2MWFd_8u4
+Content-Type: application/json
+
+{
+	"name": "Installation and Repair of Pipes",
+	"description":  "Any Pipe issue repairing and new pipe installation (will include extra charges)",
+	"serviceCharge": 500
+}
+# Service Provider userid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5MTk2NTMzMTMwODIiLCJpZCI6IjY1MjU2ZDNkZTZiOWM3MDM5YjU0MjBmNiIsImlhdCI6MTY5Njk1Mjg2NSwiZXhwIjoxNzI4NDg4ODY1fQ._tdQ-8zXuBjcVREcYMTDRRaSQC4vmzrFmT2MWFd_8u4
+

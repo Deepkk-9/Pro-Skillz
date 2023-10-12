@@ -5,14 +5,31 @@ import ButtonsPS from '../../components/ButtonsPS';
 import PhoneInput from 'react-native-phone-number-input';
 import { useNavigation } from '@react-navigation/native';
 
+import otpServices from '../../api/otp'
+
 const UserLoginSignUp = () => {
 
     const navigation = useNavigation()
 
     const phoneInput = useRef(null);
 
-    const [value, setValue] = useState("");
-    const [formattedValue, setFormattedValue] = useState("");
+	console.log('worked')
+
+    // const [phone, setPhone] = useState("");
+    const [value, setValue] = useState("")
+	const [phone, setPhone] = useState("");
+
+	const hanldeLogin = async () => {
+
+		try {
+			await otpServices.generate(phone)
+			navigation.navigate('OTP', {phone})
+		}
+		catch (error) {
+			console.log(error)
+		}
+	
+	}
 
 
     return (
@@ -37,14 +54,14 @@ const UserLoginSignUp = () => {
                             defaultCode="IN"
                             layout="first"
                             onChangeText={(text) => {
-                                setValue(text);
+                                setValue(text)
                             }}
                             onChangeFormattedText={(text) => {
-                                setFormattedValue(text);
+                                setPhone(text)
                             }} />
                     </View>
 
-                    <TouchableOpacity style={styles.btns} onPress={() => { navigation.navigate("OTP") }}>
+                    <TouchableOpacity style={styles.btns} onPress={hanldeLogin}>
                         <ButtonsPS title="Login with OTP" />
                     </TouchableOpacity>
                 </View>

@@ -1,0 +1,13 @@
+POST http://localhost:3000/api/serviceProvider
+Content-Type: application/json
+
+{
+	"firstname": "Junaid",
+	"lastname": "Ansari",
+	"phone": 9653313082,
+	"email": "junaidshahid.ansari@gmail.com",
+	"password": "junaid123",
+	"categories": ["plumbers"],
+	"coordinates": [40.7128, -74.0060]
+
+}
