@@ -14,8 +14,12 @@ import ServiceReview from '../../screens/Customer/ServiceReview';
 export default function MainStackU() {
 
     const { updateLoginStateU, updateAuthState } = useContext(AuthContext);
+	const token = {
+		token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5MTcyMTkzMDY5NTYiLCJpZCI6IjY1YzNhYjM3NWJhM2I1ZjkxMDljZjQ5YyIsImlhdCI6MTcxMjIyMTE1MiwiZXhwIjoxNzQzNzU3MTUyfQ.3NXkWWqC723IAP4IWCctaDzodSCJPvHesH8FOK2xK3Y"
+	  }
 
-    useEffect(() => {
+    useEffect(async () => {
+		await AsyncStorage.setItem('loggedUser', JSON.stringify(token))
         if (AsyncStorage.getItem("loggedUser")) {
             updateAuthState(true);
             updateLoginStateU(true);

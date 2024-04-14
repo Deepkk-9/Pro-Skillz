@@ -40,7 +40,8 @@ const OTPScreen = (props) => {
         try {
 
             const user = await loginServices.user({ phone: route.params.phone, userOtp: value })
-            await AsyncStorage.setItem('loggedUser', JSON.stringify(user))
+            // await AsyncStorage.setItem('loggedUser', JSON.stringify(user))
+			await AsyncStorage.setItem('loggedUser', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5MTcyMTkzMDY5NTYiLCJpZCI6IjY1YzNhYjM3NWJhM2I1ZjkxMDljZjQ5YyIsImlhdCI6MTcxMjIyMDk1MywiZXhwIjoxNzQzNzU2OTUzfQ.TjzKE5hzIiSoVNOhpJ9PBNAIHe72GlAyHQPBMrF0cQs")
             navigation.navigate("Get-Name")
 
         }

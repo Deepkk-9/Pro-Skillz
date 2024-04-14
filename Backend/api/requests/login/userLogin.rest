@@ -2,6 +2,6 @@ POST http://localhost:5000/api/login/user
 Content-Type: application/json
 
 {
-	"phone": "+919653313082",
-	"userOtp": "394636"
+	"phone": "+917219306956",
+	"userOtp": "990470"
 }

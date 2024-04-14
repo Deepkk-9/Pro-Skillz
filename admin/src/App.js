@@ -19,7 +19,7 @@ const App = () => {
 		if(loggedAdmin) {
 			setAdmin(JSON.parse(loggedAdmin))
 		}
-	})
+	}, [])
 
 	/** FUNCTIONS */
 	

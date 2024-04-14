@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
 
+	console.log(API_HOST);
+
     const navigation = useNavigation();
 
     const [username, setUsername] = useState('');

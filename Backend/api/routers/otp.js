@@ -26,7 +26,8 @@ otpRouter.post('/generate', async (req, res) => {
 		.messages
 		.create({
 			body: `Your OTP is ${otp}`, 
-			from: '+14155240612', 
+			// from: '+14155240612', 
+			from: '+13202887666', 
 			to: phone
 		})
 
@@ -41,7 +42,8 @@ otpRouter.post('/generate', async (req, res) => {
 
 			userExists.otp = otp;
 			const updatedUser = await userExists.save()
-			res.status(200).json(updatedUser)
+			// res.status(200).json(updatedUser)
+			res.status(200)
 		
 		} else {
 

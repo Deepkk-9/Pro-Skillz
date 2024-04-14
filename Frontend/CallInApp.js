@@ -28,14 +28,14 @@ const CallInApp = () => {
 
     }, [])
 
-
+	// directLogin = true
     const checkLoggedInOrNot = () => {
         if (directLogin == null) {
             return (
                 <UserProviderOpt />
             )
         }
-        else if (directLogin == true) {
+        else if (true) {
             return (
                 <MainStackU />
             )
