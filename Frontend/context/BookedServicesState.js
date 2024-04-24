@@ -5,6 +5,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BookedServicesState = (props) => {
 
+    console.log(API_HOST);
+
     const [bookedServices, setBookedServices] = useState(null);
 
     const updateBookedServices = async () => {
@@ -20,6 +22,9 @@ const BookedServicesState = (props) => {
             });
 
             const allBookedServices = await response.json();
+
+            // console.log("Res : ", allBookedServices);
+
             setBookedServices(allBookedServices);
         }
         catch (err) {

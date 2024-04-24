@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
@@ -16,18 +16,18 @@ const App = () => {
 	// hook to see if admin is already logged in
 	useEffect(() => {
 		const loggedAdmin = window.localStorage.getItem('loggedProSkillzAdmin')
-		if(loggedAdmin) {
+		if (loggedAdmin) {
 			setAdmin(JSON.parse(loggedAdmin))
 		}
 	})
 
 	/** FUNCTIONS */
-	
+
 	// handle logout
 	const handleLogout = () => {
 		window.localStorage.removeItem('loggedProSkillzAdmin')
-        setAdmin(null)
-	} 
+		setAdmin(null)
+	}
 
 	/** COMPONENTS */
 
@@ -51,13 +51,13 @@ const App = () => {
 					<>
 						{/* Redirect from root to /main */}
 						<Route path="/" element={<Navigate to="/main" />} />
-						<Route path="/main/*" element={<MainPage />}/>
-						<Route path="/profile" element={<SamplePage title={"Admin Profile"}/>}/>
+						<Route path="/main/*" element={<MainPage />} />
+						<Route path="/profile" element={<SamplePage title={"Admin Profile"} />} />
 					</>
 				)}
-				<Route path="*" element={<p>No Path Found</p>}/>
+				<Route path="*" element={<p>No Path Found</p>} />
 			</Routes>
-		</Router>	
+		</Router>
 	)
 
 }

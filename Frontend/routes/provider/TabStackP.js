@@ -16,8 +16,6 @@ const TabStackP = () => {
 
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
-                    } else if (route.name === 'Duejobs') {
-                        iconName = focused ? 'notifications' : 'notifications-outline';
                     } else if (route.name === 'Profile') {
                         iconName = focused ? 'person' : 'person-outline';
                     }
@@ -36,7 +34,6 @@ const TabStackP = () => {
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Duejobs" component={Duejobs} />
             <Tab.Screen name="Profile" component={UserProfileScreen} />
         </Tab.Navigator>
     );

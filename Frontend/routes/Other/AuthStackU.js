@@ -22,7 +22,7 @@ export default function AuthStackU() {
             <Stack.Navigator initialRouteName='Login-SignUp' screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login-SignUp" component={UserLoginSignUp} />
                 <Stack.Screen name="OTP" component={OTPScreen} />
-                <Stack.Screen name="Get-Name" component={GetNameScreen} />
+                {/* <Stack.Screen name="Get-Name" component={GetNameScreen} /> */}
             </Stack.Navigator>
         )
     }

@@ -11,6 +11,8 @@ const CartCards = ({ item }) => {
 
     const { removeFromCart, } = useContext(CartContext);
 
+    console.log(API_HOST);
+
     useEffect(() => {
         const getCartServiceInfo = async (service_id) => {
             try {
@@ -42,7 +44,7 @@ const CartCards = ({ item }) => {
 
     const navigation = useNavigation();
 
-	console.log(serviceCard);
+    console.log(serviceCard);
 
 
     return (

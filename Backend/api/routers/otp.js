@@ -4,7 +4,7 @@ const twilio = require('twilio')
 const User = require('../../mongodb/model/user')
 const Cart = require('../../mongodb/model/cart')
 
-const { TWILIO_AUTH_TOKEN, TWILIO_SID } = require('../../config/config') 
+const { TWILIO_AUTH_TOKEN, TWILIO_SID } = require('../../config/config')
 const { update } = require('lodash')
 
 const generateOtp = () => {
@@ -25,48 +25,48 @@ otpRouter.post('/generate', async (req, res) => {
 	const response = await client
 		.messages
 		.create({
-			body: `Your OTP is ${otp}`, 
-			from: '+14155240612', 
+			body: `Your OTP is ${otp}`,
+			from: '+13202887666',
 			to: phone
 		})
 
-		const userExists = await User.findOne({
-											phone,
-											role: {
-												$in: ['user']
-											}
-										})
-
-		if (userExists) {
-
-			userExists.otp = otp;
-			const updatedUser = await userExists.save()
-			res.status(200).json(updatedUser)
-		
-		} else {
-
-			const user = new User({
-				phone,
-				otp,
-				role: 'user',
-			})
-	
-			const savedUser = await user.save()
-
-			const cart = new Cart({
-				user: savedUser._id,
-				services: [],
-				totalPrice: 0
-			})
-
-			const savedCart = await cart.save()
-
-			console.log(savedUser, savedCart)
-			res.status(201).json(savedUser)
-
+	const userExists = await User.findOne({
+		phone,
+		role: {
+			$in: ['user']
 		}
+	})
 
-})  
+	if (userExists) {
+
+		userExists.otp = otp;
+		const updatedUser = await userExists.save()
+		res.status(200).json(updatedUser)
+
+	} else {
+
+		const user = new User({
+			phone,
+			otp,
+			role: 'user',
+		})
+
+		const savedUser = await user.save()
+
+		const cart = new Cart({
+			user: savedUser._id,
+			services: [],
+			totalPrice: 0
+		})
+
+		const savedCart = await cart.save()
+
+		console.log(savedUser, savedCart)
+		res.status(201).json(savedUser)
+
+	}
+
+})
 
 otpRouter.post('/verify', async (req, res) => {
 

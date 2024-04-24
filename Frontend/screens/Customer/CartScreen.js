@@ -1,12 +1,15 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import CartCards from '../../components/CartCards';
 import { Ionicons } from '@expo/vector-icons';
-import { CheckBox } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 import CheckoutButton from '../../components/CheckoutButton';
 import CartContext from '../../context/CartContext';
 import { useNavigation } from '@react-navigation/native';
 import LocationContext from '../../context/LocationContext';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_HOST } from "@env";
 
 const CartScreen = () => {
     const [isChecked, setChecked] = useState(false);
@@ -15,6 +18,24 @@ const CartScreen = () => {
 
     const { location } = useContext(LocationContext);
 
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [showTimePicker, setShowTimePicker] = useState(false);
+    const [selectedTime, setSelectedTime] = useState(null);
+
+    const onChangeDate = (event, selectedDate) => {
+        const currentDate = selectedDate || selectedDate;
+        setShowDatePicker(false);
+        setSelectedDate(currentDate);
+    };
+
+    const onChangeTime = (event, selectedTime) => {
+        const currentTime = selectedTime || selectedTime;
+        setShowTimePicker(false);
+        setSelectedTime(currentTime);
+    };
+
+
 
     useEffect(() => {
         getAllServicesFromCart();
@@ -22,8 +43,46 @@ const CartScreen = () => {
 
     const navigation = useNavigation();
 
-    const handleReview = () => {
-        navigation.navigate("ServiceReview");
+    const handleReview = async () => {
+        // navigation.navigate("ServiceReview");
+
+        const tokenG = await JSON.parse(await AsyncStorage.getItem("loggedUser"));
+
+        // console.log("This is cart ", cart.services);
+        // console.log([selectedDate.toDateString() + " " + selectedTime.toLocaleTimeString()]);
+
+        try {
+
+            const response = await fetch(`${API_HOST}/api/bookedService`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${tokenG.token}`
+                },
+                body: JSON.stringify(
+                    {
+                        "services": cart.services,
+                        "payment": "paymentIdWillBeAdded",
+                        "deliveryDates": [selectedDate.toDateString() + " " + selectedTime.toLocaleTimeString()],
+                        "status": "Pending"
+                    }
+                )
+            });
+
+            const orderDtls = await response.json();
+            console.log(orderDtls);
+
+            if (orderDtls) {
+                Alert.alert('Order Successful', 'Your order has been placed successfully!');
+                navigation.navigate("Home")
+            } else {
+                Alert.alert('Order Failed', 'There was an error processing your order. Please try again later.');
+            }
+        }
+        catch (err) {
+            console.log("Some error occured : ", err.message);
+        }
+
     }
 
     const handleNoItemcartBtn = () => {
@@ -63,7 +122,6 @@ const CartScreen = () => {
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View>
-                    {/* <CartCards /> */}
                     {
                         cart.services.map((item, index) => {
                             return <CartCards item={item} key={index} />
@@ -88,6 +146,45 @@ const CartScreen = () => {
                 />
 
                 <View style={styles.payCont}>
+
+                    <View>
+                        <TouchableOpacity style={styles.datetimeBtn} onPress={() => setShowDatePicker(true)}>
+                            <Text style={styles.datetimeTxt}>
+                                Select Date
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.datetimeBtn} onPress={() => setShowTimePicker(true)}>
+                            <Text style={styles.datetimeTxt}>
+                                Select Time
+                            </Text>
+                        </TouchableOpacity>
+                        {showDatePicker && (
+                            <DateTimePicker
+                                value={selectedDate}
+                                mode="date"
+                                display="default"
+                                onChange={onChangeDate}
+                            />
+                        )}
+                        {showTimePicker && (
+                            <DateTimePicker
+                                value={selectedDate}
+                                mode="time"
+                                display="default"
+                                onChange={onChangeTime}
+                            />
+                        )}
+
+                        <Text style={{ marginVertical: 10, fontSize: 15, fontWeight: "400" }}>
+                            <Text style={{ fontWeight: "bold" }}>
+                                Scheduled for : {"\n"}
+                            </Text>
+                            Date : {selectedDate.toDateString()} {"\n"}
+                            Time : {selectedTime ? selectedTime.toLocaleTimeString() : 'Not selected'}
+                        </Text>
+                    </View>
+
+
                     <Text style={styles.txt}>
                         Payment Summary
                     </Text>
@@ -167,5 +264,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginVertical: 20
+    },
+    datetimeBtn: {
+        backgroundColor: "#3B37FF",
+        marginVertical: 5,
+        borderRadius: 7,
+    },
+    datetimeTxt: {
+        color: "#fff",
+        fontSize: 15,
+        textAlign: "center",
+        marginVertical: 10
     }
 })

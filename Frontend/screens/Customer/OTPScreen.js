@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from '@react-navigation/native';
 
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import OTPIcon from '../../assets/icons/OTPIcon.svg'
 import { useNavigation } from '@react-navigation/native'
 import ButtonsPS from '../../components/ButtonsPS'
@@ -15,11 +15,14 @@ import {
 } from 'react-native-confirmation-code-field';
 
 import loginServices from '../../api/login'
+import AuthContext from '../../context/AuthContext';
 
 
 const CELL_COUNT = 6;
 
 const OTPScreen = (props) => {
+
+    const { updateLoginStateU } = useContext(AuthContext);
 
     const { route } = props
 
@@ -38,10 +41,11 @@ const OTPScreen = (props) => {
     const checkOTP = async () => {
 
         try {
-
             const user = await loginServices.user({ phone: route.params.phone, userOtp: value })
             await AsyncStorage.setItem('loggedUser', JSON.stringify(user))
-            navigation.navigate("Get-Name")
+            // navigation.navigate("Get-Name")
+
+            updateLoginStateU(true)
 
         }
         catch (error) {

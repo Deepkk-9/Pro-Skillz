@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom" 
+import { useNavigate } from "react-router-dom"
 
 import LoginForm from "../components/LoginForm"
-import loginServices from '../services/api/login' 
+import loginServices from '../services/api/login'
 
 const LoginPage = (props) => {
 
@@ -12,7 +12,7 @@ const LoginPage = (props) => {
 
 	const navigate = useNavigate()
 
-	const {setAdmin} = props
+	const { setAdmin } = props
 
 	const handleLogin = async (event) => {
 
@@ -22,7 +22,9 @@ const LoginPage = (props) => {
 			const admin = await loginServices.login({
 				username, password
 			})
-			
+
+			console.log("ashdkjasd : ", username, password);
+
 			window.localStorage.setItem(
 				'loggedProSkillzAdmin', JSON.stringify(admin.token)
 			)
@@ -31,7 +33,7 @@ const LoginPage = (props) => {
 			setUsername('')
 			setPassword('')
 			setLoginError('')
-		} catch(exception) {
+		} catch (exception) {
 			setLoginError('Invalid Username or Password')
 			console.log(exception)
 		}

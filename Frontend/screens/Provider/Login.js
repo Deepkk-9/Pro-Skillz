@@ -1,6 +1,6 @@
-import { View, Text, Button, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, Button, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, BackHandler } from 'react-native'
 import React, { useContext, useState } from 'react'
-import { useNavigation } from '@react-navigation/core'
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import UserLoginIcon from '../../assets/icons/UserLoginIcon.svg'
 import InputF from '../../components/InputF'
 import ButtonsPS from '../../components/ButtonsPS'
@@ -9,6 +9,19 @@ import { API_HOST } from "@env"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
+
+    const { updateAuthState } = useContext(AuthContext);
+    useFocusEffect(
+        React.useCallback(() => {
+            const onBackPress = () => {
+                updateAuthState(null)
+                return true;
+            };
+
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+            return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [navigation])
+    );
 
     const navigation = useNavigation();
 
@@ -36,7 +49,7 @@ const Login = () => {
 
             const authSPCheck = await response.json();
 
-            console.log(authSPCheck.token);
+            console.log(authSPCheck);
 
             await AsyncStorage.setItem('loggedServiceProvider', JSON.stringify(authSPCheck.token))
 
@@ -66,7 +79,7 @@ const Login = () => {
                     </View>
 
                     <TouchableOpacity style={styles.btn} onPress={() => loginSignUp()}>
-                        <ButtonsPS title="Login with OTP" />
+                        <ButtonsPS title="Login" />
                     </TouchableOpacity>
 
                     <TouchableOpacity>

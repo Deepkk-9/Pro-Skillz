@@ -1,7 +1,6 @@
 require('dotenv').config()
 
-// const API_PORT = process.env.API_PORT
-const API_PORT = process.env.PORT
+const API_PORT = process.env.API_PORT
 const GRAPHQL_PORT = process.env.GRAPHQL_PORT
 
 const MONGODB_URI = process.env.MONGODB_URI
@@ -12,8 +11,8 @@ const TWILIO_VERIFY_SID = process.env.TWILIO_VERIFY_SID
 
 const JWT_SECRET = process.env.JWT_SECRET
 
-module.exports = { 
-	API_PORT, 
+module.exports = {
+	API_PORT,
 	GRAPHQL_PORT,
 	MONGODB_URI,
 	TWILIO_SID,

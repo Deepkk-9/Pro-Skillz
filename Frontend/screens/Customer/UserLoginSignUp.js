@@ -1,19 +1,32 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, BackHandler } from 'react-native'
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import UserLoginIcon from '../../assets/icons/UserLoginIcon.svg';
 import ButtonsPS from '../../components/ButtonsPS';
 import PhoneInput from 'react-native-phone-number-input';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import AuthContext from '../../context/AuthContext';
 import otpServices from '../../api/otp'
 
 const UserLoginSignUp = () => {
 
+    const { updateAuthState } = useContext(AuthContext);
+    useFocusEffect(
+        React.useCallback(() => {
+            const onBackPress = () => {
+                updateAuthState(null)
+                return true;
+            };
+
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+            return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [navigation])
+    );
+
+
     const navigation = useNavigation()
 
     const phoneInput = useRef(null);
 
-    const { authType, afterLoginU } = useContext(AuthContext);
 
     // console.log('worked')
 

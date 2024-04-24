@@ -9,7 +9,7 @@ const UserProfileScreen = () => {
 
 
     const [isModalVisible, setModalVisible] = useState(false);
-    const [name, setName] = useState('Deep Kawale');
+    const [name, setName] = useState('User');
     const { directLogin, updateDirectLogin, updateAuthState, updateLoginStateU } = useContext(AuthContext);
 
     const handleSaveName = (newName) => {

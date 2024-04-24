@@ -28,7 +28,6 @@ const CallInApp = () => {
 
     }, [])
 
-
     const checkLoggedInOrNot = () => {
         if (directLogin == null) {
             return (

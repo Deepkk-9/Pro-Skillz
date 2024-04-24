@@ -14,8 +14,8 @@ app.listen(API_PORT, () => {
 })
 
 startStandaloneServer(apolloServer, {
-	listen: {port: GRAPHQL_PORT}
-}).then(({url}) => {
+	listen: { port: GRAPHQL_PORT }
+}).then(({ url }) => {
 	console.log(`GraphQL Server running on port ${GRAPHQL_PORT}`)
 })
 

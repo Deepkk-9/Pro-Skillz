@@ -7,6 +7,8 @@ const CartState = (props) => {
 
     const [cart, setCart] = useState({});
 
+    console.log(API_HOST);
+
     const getAllServicesFromCart = async () => {
         try {
 
@@ -90,7 +92,7 @@ const CartState = (props) => {
 
             setCartService(getService);
 
-            // console.log("Cart Service info :", getService);
+            console.log("Cart Service info :", getService);
         }
         catch (err) {
             console.log("Get Cart Service info error : ", err.message);

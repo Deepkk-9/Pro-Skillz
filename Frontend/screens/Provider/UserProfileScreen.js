@@ -17,7 +17,7 @@ const UserProfileScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>UserProfileScreen</Text>
+            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Profile</Text>
 
             <TouchableOpacity style={styles.lists} onPress={handleLogOut}>
                 <Ionicons name="log-out" size={25} color="#fff" style={styles.logos} />
