@@ -8,7 +8,8 @@ const CategoryState = (props) => {
     const [catServices, setCatServices] = useState([]);
     const [reviews, setReviews] = useState([]);
 
-    console.log(category, API_HOST);
+    console.log(category);
+    console.log(API_HOST);
 
 
     const getAllCategories = async () => {

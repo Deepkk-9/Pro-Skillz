@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BookedServicesState = (props) => {
 
+    // console.log(API_HOST);
     console.log(API_HOST);
 
     const [bookedServices, setBookedServices] = useState(null);

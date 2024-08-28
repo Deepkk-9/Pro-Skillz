@@ -3,6 +3,8 @@ import { API_HOST } from "@env";
 
 const baseUrl = `${API_HOST}/api/login`
 
+// console.log(API_HOST);
+
 console.log(API_HOST);
 
 let token = null

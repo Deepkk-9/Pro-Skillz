@@ -14,6 +14,7 @@ LogBox.ignoreAllLogs();
 
 const SignUp = () => {
 
+    // console.log(API_HOST);
     console.log(API_HOST);
 
     const [open, setOpen] = useState(false);

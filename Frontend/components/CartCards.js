@@ -11,6 +11,7 @@ const CartCards = ({ item }) => {
 
     const { removeFromCart, } = useContext(CartContext);
 
+    // console.log(API_HOST)
     console.log(API_HOST);
 
     useEffect(() => {

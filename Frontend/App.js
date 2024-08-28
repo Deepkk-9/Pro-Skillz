@@ -35,7 +35,8 @@ export default function App() {
     prepare()
   }, [])
 
-  console.log(API_HOST_GQL)
+  // console.log(API_HOST_GQL)
+  console.log("GQL API Host : ", API_HOST_GQL);
 
   const client = new ApolloClient({
 

@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
 
+    console.log(API_HOST);
+
     const { updateAuthState } = useContext(AuthContext);
     useFocusEffect(
         React.useCallback(() => {

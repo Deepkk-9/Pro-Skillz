@@ -6,6 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import BookedServicesContext from '../context/BookedServicesContext';
 
 const SPPendingJobCard = ({ service, task }) => {
+
+    console.log(API_HOST);
+
     const { updateBookedServices } = useContext(BookedServicesContext);
     const [getServiceInfo, setGetServiceInfo] = useState(null);
     const [confirming, setConfirming] = useState(false);

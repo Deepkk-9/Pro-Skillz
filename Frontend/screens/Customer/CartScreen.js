@@ -12,6 +12,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_HOST } from "@env";
 
 const CartScreen = () => {
+
+    console.log(API_HOST);
     const [isChecked, setChecked] = useState(false);
 
     const { cart, getAllServicesFromCart } = useContext(CartContext);

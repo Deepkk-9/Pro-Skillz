@@ -22,7 +22,7 @@ const ServiceProviderCard = ({ item, inCart }) => {
 
     const handlAddorRemoveFromCart = () => {
 
-        console.log(addOrRemove);
+        console.log("Add or remove : ", addOrRemove);
 
         addOrRemove ? removeFromCart(item.id) : addInCart(item.id)
 

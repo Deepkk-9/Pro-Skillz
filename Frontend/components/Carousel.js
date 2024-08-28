@@ -11,12 +11,12 @@ const Carousel = () => {
         },
         {
             id: '2',
-            image: require('../assets/bruh.png'),
+            image: require('../assets/bruh1.jpg'),
             title: 'Carousel Item 2',
         },
         {
             id: '3',
-            image: require('../assets/bruh.png'),
+            image: require('../assets/bruh2.jpg'),
             title: 'Carousel Item 3',
         },
     ];
