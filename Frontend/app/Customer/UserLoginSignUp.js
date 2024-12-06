@@ -66,6 +66,7 @@ const UserLoginSignUp = () => {
                             textContainerStyle={styles.inpFP}
                             ref={phoneInput}
                             defaultValue={value}
+                            textInputStyle={{ color: "#000" }}
                             defaultCode="IN"
                             layout="first"
                             onChangeText={(text) => {
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         width: "90%",
         borderWidth: 0.7,
         borderRadius: 10,
-        height: 50
+        height: 50,
     },
 
     inpFP: {

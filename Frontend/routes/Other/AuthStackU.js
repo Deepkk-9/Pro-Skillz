@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import UserLoginSignUp from '../../screens/Customer/UserLoginSignUp';
-import OTPScreen from '../../screens/Customer/OTPScreen';
-import GetNameScreen from '../../screens/Customer/GetNameScreen';
+import UserLoginSignUp from '../../app/Customer/UserLoginSignUp';
+import OTPScreen from '../../app/Customer/OTPScreen';
+import GetNameScreen from '../../app/Customer/GetNameScreen';
 import AuthContext from '../../context/AuthContext';
 import MainStackU from '../user/MainStackU';
 

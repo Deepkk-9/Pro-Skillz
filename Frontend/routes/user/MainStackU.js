@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabStackU from './TabStackU';
-import SearchScreen from '../../screens/Customer/SearchScreen';
-import CategorySlugScreen from '../../screens/Customer/CategorySlugScreen';
+import SearchScreen from '../../app/Customer/SearchScreen';
+import CategorySlugScreen from '../../app/Customer/CategorySlugScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../context/AuthContext';
-import ServiceSlugScreen from '../../screens/Customer/ServiceSlugScreen';
-import AllDeals from '../../screens/Customer/AllDeals';
-import AllRecentServices from '../../screens/Customer/AllRecentServices';
-import ServicceProviderProfileScreen from '../../screens/Customer/ServicceProviderProfileScreen';
-import ServiceReview from '../../screens/Customer/ServiceReview';
+import ServiceSlugScreen from '../../app/Customer/ServiceSlugScreen';
+import AllDeals from '../../app/Customer/AllDeals';
+import AllRecentServices from '../../app/Customer/AllRecentServices';
+import ServicceProviderProfileScreen from '../../app/Customer/ServicceProviderProfileScreen';
+import ServiceReview from '../../app/Customer/ServiceReview';
 
 export default function MainStackU() {
 

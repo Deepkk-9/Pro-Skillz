@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from '../../screens/Provider/Login';
-import SignUp from '../../screens/Provider/SignUp';
+import Login from '../../app/Provider/Login';
+import SignUp from '../../app/Provider/SignUp';
 import { useContext } from 'react';
 import MainStackP from '../provider/MainStackP';
 import AuthContext from '../../context/AuthContext';

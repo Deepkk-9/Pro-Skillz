@@ -15,7 +15,6 @@ const CategorySlugScreen = ({ route }) => {
 
     const { longLat } = useContext(LocationContext);
 
-
     const { cart, getAllServicesFromCart } = useContext(CartContext);
 
     useEffect(() => {
@@ -57,7 +56,7 @@ const CategorySlugScreen = ({ route }) => {
     if (loading) return <Text>Loading...</Text>;
     if (error) return <Text>Error: {error.message}</Text>;
 
-    // console.log("Graph QL : ", item);
+    console.log("Graph QL : ", item);
     // console.log(item);
 
     return (
@@ -67,6 +66,7 @@ const CategorySlugScreen = ({ route }) => {
                     cart ?
                         cart.totalPrice > 0 ? { marginBottom: 100 } : { marginBottom: 0 }
                         : { marginBottom: 0 }}>
+
                 <Image style={styles.imgBanner} source={{ uri: `data:${item.image.contentType};base64,${item.image.data}` }} alt='category banner' />
 
 

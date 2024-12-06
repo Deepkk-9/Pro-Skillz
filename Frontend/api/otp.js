@@ -13,7 +13,7 @@ const setToken = newToken => {
 
 const generate = async phone => {
 	// console.log(API_HOST);
-	console.log(`${baseUrl}/generate`)
+	// console.log(`${baseUrl}/generate`)
 	const response = await axios.post(`${baseUrl}/generate`, { phone })
 	console.log(response.data)
 	return response.data

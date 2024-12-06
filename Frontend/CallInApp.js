@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from './context/AuthContext';
-import UserProviderOpt from './screens/Other/UserProviderOpt';
+import UserProviderOpt from './app/Other/UserProviderOpt';
 import MainStackU from './routes/user/MainStackU';
 import MainStackP from './routes/provider/MainStackP';
 import AsyncStorage from '@react-native-async-storage/async-storage';
